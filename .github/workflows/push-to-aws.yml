@@ -28,14 +28,14 @@ name: Deploy to Amazon ECS
 
 on:
   push:
-    branches:
+    branches: [ "master" ]
 
 env:
   AWS_REGION: us-east-1                   # set this to your preferred AWS region, e.g. us-west-1
   ECR_REPOSITORY: MY_ECR_REPOSITORY           # set this to your Amazon ECR repository name
 
-permissions:
-  contents: read
+#permissions:
+#  contents: read
 
 jobs:
   deploy:
