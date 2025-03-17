@@ -1,5 +1,9 @@
 FROM python:3.9.0
 
+WORKDIR /mooninsurance/agent
+
+COPY . .
+
 RUN apt-get update \
   && apt-get install unixodbc -y \
   && apt-get install unixodbc-dev -y \
