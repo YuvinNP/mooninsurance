@@ -69,7 +69,7 @@ jobs:
         # be deployed to ECS.
         for service in agent integration; do
           cd $service
-          IMAGE_TAG = $service
+          IMAGE_TAG="$service-img"
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
