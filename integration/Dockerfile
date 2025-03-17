@@ -6,7 +6,7 @@ COPY . .
 
 RUN apt-get update \
   && apt-get install unixodbc -y \
-  && apt-get install unixodbc-dev -y \
+  && apt-get install unixodbc-dev -y
 
 # Install Python dependencies
 RUN pip install --upgrade pip && pip install -r requirements.txt
