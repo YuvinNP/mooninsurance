@@ -6,4 +6,4 @@ def hello_world():  # put application's code here
     return 'Hello World! - from AGENT'
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=True)
