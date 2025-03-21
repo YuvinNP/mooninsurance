@@ -1,7 +1,7 @@
 from flask import Flask
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/agent')
 def hello_world():  # put application's code here
     return 'Hello World! - from AGENT'
 
