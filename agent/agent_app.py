@@ -6,7 +6,7 @@ def hello_world():  # put application's code here
     return 'Hello World! - from AGENT'
 
 @app.route('/', methods=['GET'])
-def hello_world():  # put application's code here
+def hello_world_get():  # put application's code here
     return 'Hello World! - from AGENT /'
 
 if __name__ == '__main__':
