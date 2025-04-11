@@ -5,6 +5,10 @@ app = Flask(__name__)
 def hello_world():  # put application's code here
     return 'Hello World! - from AGENT'
 
+@app.route('/agent/get_agent/')
+def hello_world_get_agent():  # put application's code here
+    return 'Hello World! - from GET AGENT'
+
 @app.route('/', methods=['GET'])
 def hello_world_get():  # put application's code here
     return 'Hello World! - from AGENT /'
