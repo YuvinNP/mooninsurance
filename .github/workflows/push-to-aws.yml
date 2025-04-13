@@ -41,7 +41,7 @@ jobs:
         # Build a docker container and
         # push it to ECR so that it can
         # be deployed to ECS.
-        for service in agent integration; do
+        for service in agent integration sales branch; do
           cd $service
           IMAGE_TAG="$service-img"
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
