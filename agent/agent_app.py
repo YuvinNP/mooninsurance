@@ -36,7 +36,7 @@ def hello_world():  # put application's code here
     return 'Hello World! - from AGENT'
 
 
-@app.route('/agents', methods=['POST'])
+@app.route('/agent/post_agent', methods=['POST'])
 def create_agent():
     data = request.form
 
@@ -61,8 +61,8 @@ def create_agent():
          }), 201
 
 
-@app.route('/agents/<agent_id>', methods=['GET'])
-@app.route('/agents', defaults={'agent_id': None}, methods=['GET'])
+@app.route('/agent/get_agent/<agent_id>', methods=['GET'])
+@app.route('/agent/get_agent', defaults={'agent_id': None}, methods=['GET'])
 def get_agent(agent_id):
     if agent_id:
         agent = Agent.query.get(agent_id)
@@ -96,7 +96,7 @@ def get_agent(agent_id):
 
 
 # Delete agent (DELETE)
-@app.route('/agents/<agent_id>', methods=['DELETE'])
+@app.route('/agent/delete_agent/<agent_id>', methods=['DELETE'])
 def delete_agent(agent_id):
     agent = Agent.query.get(agent_id)
     if not agent:

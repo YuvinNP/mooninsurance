@@ -1,5 +1,4 @@
 from flask import Flask, request, jsonify
-from util.utils import create_db_connection, get_branch_ids
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -34,7 +33,7 @@ def hello_world():  # put application's code here
     return 'Hello World! - from branch'
 
 
-@app.route('/branches', methods=['POST'])
+@app.route('/branch/post_branch', methods=['POST'])
 def create_branch():
     data = request.form
 
@@ -54,8 +53,8 @@ def create_branch():
          }), 201
 
 
-@app.route('/branches/<branch_id>', methods=['GET'])
-@app.route('/branches', defaults={'branch_id': None}, methods=['GET'])
+@app.route('/branch/get_branch/<branch_id>', methods=['GET'])
+@app.route('/branch/get_branch', defaults={'branch_id': None}, methods=['GET'])
 def get_branch(branch_id):
     if branch_id:
         branch = Branch.query.get(branch_id)
@@ -86,7 +85,7 @@ def get_branch(branch_id):
 
 
 # Delete branch (DELETE)
-@app.route('/branches/<branch_id>', methods=['DELETE'])
+@app.route('/branch/delete_branch/<branch_id>', methods=['DELETE'])
 def delete_branch(branch_id):
     branch = Branch.query.get(branch_id)
     if not branch:

@@ -1,5 +1,4 @@
 from flask import Flask, request, jsonify
-from util.utils import create_db_connection, get_sale_ids
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -35,7 +34,7 @@ def hello_world():  # put application's code here
     return 'Hello World! - from sale'
 
 
-@app.route('/sales', methods=['POST'])
+@app.route('/sales/post_sales', methods=['POST'])
 def create_sale():
     data = request.form
 
@@ -55,8 +54,8 @@ def create_sale():
          }), 201
 
 
-@app.route('/sales/<sale_id>', methods=['GET'])
-@app.route('/sales', defaults={'sales_id': None}, methods=['GET'])
+@app.route('/sales/get_sales/<sale_id>', methods=['GET'])
+@app.route('/sales/get_sales', defaults={'sales_id': None}, methods=['GET'])
 def get_sale(sale_id):
     if sale_id:
         sale = Sales.query.get(sale_id)
@@ -87,7 +86,7 @@ def get_sale(sale_id):
 
 
 # Delete sale (DELETE)
-@app.route('/sales/<sale_id>', methods=['DELETE'])
+@app.route('/sales/delete_sales/<sale_id>', methods=['DELETE'])
 def delete_sale(sale_id):
     sale = Sales.query.get(sale_id)
     if not sale:
