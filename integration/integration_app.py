@@ -35,7 +35,7 @@ def hello_world():  # put application's code here
     return 'Hello World! - from integration'
 
 
-@app.route('/integrations', methods=['POST'])
+@app.route('/integration/post_integration', methods=['POST'])
 def create_integration():
     data = request.form
 
@@ -57,8 +57,8 @@ def create_integration():
          }), 201
 
 
-@app.route('/integrations/<integration_id>', methods=['GET'])
-@app.route('/integrations', defaults={'integration_id': None}, methods=['GET'])
+@app.route('/integration/get_integration/<integration_id>', methods=['GET'])
+@app.route('/integrations/get_integration', defaults={'integration_id': None}, methods=['GET'])
 def get_integration(integration_id):
     if integration_id:
         integration = Integration.query.get(integration_id)
@@ -91,7 +91,7 @@ def get_integration(integration_id):
 
 
 # Delete integration (DELETE)
-@app.route('/integrations/<integration_id>', methods=['DELETE'])
+@app.route('/integrations/delete_integration/<integration_id>', methods=['DELETE'])
 def delete_integration(integration_id):
     integration = Integration.query.get(integration_id)
     if not integration:
