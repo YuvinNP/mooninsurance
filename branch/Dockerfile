@@ -1,6 +1,6 @@
 FROM python:3.9.0
 
-WORKDIR /mooninsurance/integration
+WORKDIR /mooninsurance/branch
 
 COPY . .
 
@@ -12,7 +12,7 @@ RUN apt-get update \
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
 # Expose the port the service runs on
-EXPOSE 5002
+EXPOSE 5001
 
 # Define the command to run the service
-CMD ["python", "integration_app.py"]
+CMD ["python", "branch_app.py"]

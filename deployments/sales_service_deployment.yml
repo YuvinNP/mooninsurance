@@ -1,35 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: agent-service
+  name: sales-service
   namespace: ingress-nginx
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: agent-service
+      app: sales-service
   template:
     metadata:
       labels:
-        app: agent-service
+        app: sales-service
     spec:
       containers:
-      - name: agent-service
-        image: 925130874351.dkr.ecr.us-east-1.amazonaws.com/cc-mooninsurance:agent-img
+      - name: sales-service
+        image: 925130874351.dkr.ecr.us-east-1.amazonaws.com/cc-mooninsurance:sales-img
         ports:
-        - containerPort: 5000
+        - containerPort: 5003
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: agent-service
+  name: sales-service
   namespace: ingress-nginx
 spec:
   selector:
-    app: agent-service
+    app: sales-service
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 5000
+      targetPort: 5003
   type: ClusterIP
