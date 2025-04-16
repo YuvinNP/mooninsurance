@@ -40,7 +40,7 @@ jobs:
         # be deployed to ECS.
         for service in agent integration sales branch; do
           cd $service
-          IMAGE_TAG="$service-img"
+          IMAGE_TAG="$service-img-v1"
           docker build --no-cache -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           cd ..
@@ -49,14 +49,14 @@ jobs:
     - name: Waiting task for 60 Seconds
       run: sleep 60
 
-#    - name: Update Kubeconfig for CLI
-#      run: |
-#        aws eks update-kubeconfig --name moonagenttracker --region ${{ env.AWS_REGION }}
-#
-#    - name: Rollout Kubernetes Artifacts to EKS
-#      id: rollout-builds
-#      run: |
-#        kubectl apply -f deployments/agent_service_deployment.yml
+    - name: Update Kubeconfig for CLI
+      run: |
+        aws eks update-kubeconfig --name moonagenttracker --region ${{ env.AWS_REGION }}
+
+    - name: Rollout Kubernetes Artifacts to EKS
+      id: rollout-builds
+      run: |
+        kubectl apply -f deployments/agent_service_deployment.yml
 #        kubectl apply -f deployments/branch_service_deployment.yml
 #        kubectl apply -f deployments/integration_service_deployment.yml
 #        kubectl apply -f deployments/sales_service_deployment.yml
