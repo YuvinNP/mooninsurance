@@ -1,4 +1,4 @@
-name: Deploy to Amazon ECR
+name: Build and Deploy to Amazon ECR/EKS
 
 on:
   push:
@@ -8,14 +8,11 @@ env:
   AWS_REGION: us-east-1                   # set this to your preferred AWS region, e.g. us-west-1
   ECR_REPOSITORY: cc-mooninsurance           # set this to your Amazon ECR repository name
 
-#permissions:
-#  contents: read
 
 jobs:
   deploy:
-    name: Deploy
+    name: Build and Deploy to Amazon ECR/EKS
     runs-on: ubuntu-latest
-    environment: production
 
     steps:
     - name: Checkout

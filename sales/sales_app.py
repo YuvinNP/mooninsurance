@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 uname = 'admin'
 password = 'root#123'
-host = 'mooninsurancedb.cxoameg6ycbo.us-east-1.rds.amazonaws.com'
+host = 'moonagentdb.cxoameg6ycbo.us-east-1.rds.amazonaws.com'
 port = 3306
 dbname = 'mooninsurance_db'
 
@@ -19,8 +19,8 @@ class Sales(db.Model):
     __tablename__ = 'sales'
     __table_args__ = {'schema': 'mooninsurance_db'}
 
-    sales_id = db.Column(db.Integer, primary_key=True)
-    sale_id = db.Column(db.String(50), nullable=False)
+    sale_id = db.Column(db.Integer, primary_key=True)
+    agent_id = db.Column(db.String(50), nullable=False)
     product_id = db.Column(db.String(50), nullable=False)
     sales_amount = db.Column(db.String(100), nullable=False)
     sales_date = db.Column(db.String(10), nullable=False)

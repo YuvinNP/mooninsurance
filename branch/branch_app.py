@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 uname = 'admin'
 password = 'root#123'
-host = 'mooninsurancedb.cxoameg6ycbo.us-east-1.rds.amazonaws.com'
+host = 'moonagentdb.cxoameg6ycbo.us-east-1.rds.amazonaws.com'
 port = 3306
 dbname = 'mooninsurance_db'
 

@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 uname = 'admin'
 password = 'root#123'
-host = 'mooninsurancedb.cxoameg6ycbo.us-east-1.rds.amazonaws.com'
+host = 'moonagentdb.cxoameg6ycbo.us-east-1.rds.amazonaws.com'
 port = 3306
 dbname = 'mooninsurance_db'
 
@@ -58,7 +58,7 @@ def create_integration():
 
 
 @app.route('/integration/get_integration/<integration_id>', methods=['GET'])
-@app.route('/integrations/get_integration', defaults={'integration_id': None}, methods=['GET'])
+@app.route('/integration/get_integration', defaults={'integration_id': None}, methods=['GET'])
 def get_integration(integration_id):
     if integration_id:
         integration = Integration.query.get(integration_id)
@@ -91,7 +91,7 @@ def get_integration(integration_id):
 
 
 # Delete integration (DELETE)
-@app.route('/integrations/delete_integration/<integration_id>', methods=['DELETE'])
+@app.route('/integration/delete_integration/<integration_id>', methods=['DELETE'])
 def delete_integration(integration_id):
     integration = Integration.query.get(integration_id)
     if not integration:
