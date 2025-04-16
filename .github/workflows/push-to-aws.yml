@@ -41,7 +41,7 @@ jobs:
         for service in agent integration sales branch; do
           cd $service
           IMAGE_TAG="$service-img"
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker build --no-cache -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           cd ..
         done
