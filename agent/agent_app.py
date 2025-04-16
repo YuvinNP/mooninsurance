@@ -14,7 +14,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-
 class Agent(db.Model):
     __tablename__ = 'agents'
     __table_args__ = {'schema': 'mooninsurance_db'}
