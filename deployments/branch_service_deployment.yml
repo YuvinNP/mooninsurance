@@ -15,7 +15,8 @@ spec:
     spec:
       containers:
       - name: branch-service
-        image: 925130874351.dkr.ecr.us-east-1.amazonaws.com/cc-mooninsurance:branch-img
+        image: 925130874351.dkr.ecr.us-east-1.amazonaws.com/cc-mooninsurance:branch-img-v2
+        imagePullPolicy: Always
         ports:
         - containerPort: 5002
 

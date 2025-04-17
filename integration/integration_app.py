@@ -16,7 +16,7 @@ db = SQLAlchemy(app)
 
 
 class Integration(db.Model):
-    __tablename__ = 'integrations'
+    __tablename__ = 'sales'
     __table_args__ = {'schema': 'mooninsurance_db'}
 
     integration_id = db.Column(db.Integer, primary_key=True)

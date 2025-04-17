@@ -5,8 +5,8 @@ on:
     branches: [ "dev" ]
 
 env:
-  AWS_REGION: us-east-1                   # set this to your preferred AWS region, e.g. us-west-1
-  ECR_REPOSITORY: cc-mooninsurance           # set this to your Amazon ECR repository name
+  AWS_REGION: us-east-1
+  ECR_REPOSITORY: cc-mooninsurance
 
 
 jobs:
@@ -40,7 +40,7 @@ jobs:
         # be deployed to ECS.
         for service in agent integration sales branch; do
           cd $service
-          IMAGE_TAG="$service-img-v1"
+          IMAGE_TAG="$service-img-v2"
           docker build --no-cache -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           cd ..
@@ -57,7 +57,7 @@ jobs:
       id: rollout-builds
       run: |
         kubectl apply -f deployments/agent_service_deployment.yml
-#        kubectl apply -f deployments/branch_service_deployment.yml
-#        kubectl apply -f deployments/integration_service_deployment.yml
-#        kubectl apply -f deployments/sales_service_deployment.yml
-#        kubectl apply -f deployments/ingress_deployment.yml
+        kubectl apply -f deployments/branch_service_deployment.yml
+        kubectl apply -f deployments/integration_service_deployment.yml
+        kubectl apply -f deployments/sales_service_deployment.yml
+        kubectl apply -f deployments/ingress_deployment.yml

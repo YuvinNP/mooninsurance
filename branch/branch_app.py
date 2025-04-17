@@ -71,11 +71,9 @@ def get_branch(branch_id):
         branches_all = Branch.query.all()
         result = [{
             "branch_id": a.branch_id,
-            "first_name": a.first_name,
-            "last_name": a.last_name,
-            "username": a.uname,
-            "email": a.email,
-            "contact_no": a.contact_no,
+            "branch_name": a.branch_name,
+            "location": a.location,
+            "total_sales": a.total_sales
         } for a in branches_all]
 
         return jsonify({

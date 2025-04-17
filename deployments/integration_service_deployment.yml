@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: integration-service
-        image: 925130874351.dkr.ecr.us-east-1.amazonaws.com/cc-mooninsurance:integration-img
+        image: 925130874351.dkr.ecr.us-east-1.amazonaws.com/cc-mooninsurance:integration-img-v2
         ports:
         - containerPort: 5001
 
