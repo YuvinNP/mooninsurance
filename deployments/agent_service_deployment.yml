@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: agent-service
-        image: 925130874351.dkr.ecr.us-east-1.amazonaws.com/cc-mooninsurance:agent-img-v1
+        image: 925130874351.dkr.ecr.us-east-1.amazonaws.com/cc-mooninsurance:agent-img-v2
         ports:
         - containerPort: 5000
 

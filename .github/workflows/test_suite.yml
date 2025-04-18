@@ -1,0 +1,50 @@
+name: API Test Suite
+
+on:
+  workflow_run:
+    workflows:
+      - Build and Deploy to Amazon ECR/EKS
+    types:
+      - completed
+
+jobs:
+  integration-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Configure AWS
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+
+      - name: Update kubeconfig
+        run: |
+          aws eks --region ${{ secrets.AWS_REGION }} update-kubeconfig --name mediTrack-eksClus
+
+
+      - name: Waiting for all pods ready
+        run: |
+          kubectl wait --for=condition=ready pod -l app=agent-service --timeout=60s
+          kubectl wait --for=condition=ready pod -l app=branch-service --timeout=60s
+          kubectl wait --for=condition=ready pod -l app=integration-service --timeout=60s
+          
+
+      - name: Run API Endpoint Testing
+        run: |
+          set -e
+          echo "Agents Endpoint..."
+          curl -X GET "http://a27535aab203a46c8b905de45be266ba-168835108.us-east-1.elb.amazonaws.com/agent" \
+
+          echo "Branch Endpoint..."
+          curl -X GET "http://a27535aab203a46c8b905de45be266ba-168835108.us-east-1.elb.amazonaws.com/branch" \
+
+          echo "Integration Endpoint..."
+          curl -X GET "http://a27535aab203a46c8b905de45be266ba-168835108.us-east-1.elb.amazonaws.com/integration" \
+
+          echo "API Endpoints are A LIVE!"

@@ -40,11 +40,10 @@ def create_integration():
     data = request.form
 
     new_integration = Integration(
-        agent_code=data.get('agent_code'),
+        agent_code=data.get('agent_id'),
         product_id=data.get('product_id'),
         sales_amount=data.get('sales_amount'),
-        sales_date=data.get('sales_date'),
-        status=data.get('status')
+        sales_date=data.get('sales_date')
     )
 
     db.session.add(new_integration)
@@ -52,8 +51,7 @@ def create_integration():
 
     return jsonify(
         {"message": "integration created successfully",
-         "integration": new_integration.integration_id,
-         "username": new_integration.status,
+         "integration": new_integration.integration_id
          }), 201
 
 
@@ -66,22 +64,20 @@ def get_integration(integration_id):
             return jsonify({"message": "integration not found"}), 404
         integration_data = {
             "integration_id": integration.integration_id,
-            "agent_code": integration.agent_code,
+            "agent_code": integration.agent_id,
             "product_id": integration.product_id,
             "sales_amount": integration.sales_amount,
-            "sales_date": integration.sales_date,
-            "status": integration.status
+            "sales_date": integration.sales_date
         }
         return jsonify({"integration": integration_data}), 200
     else:
         integrations_all = Integration.query.all()
         result = [{
             "integration_id": a.integration_id,
-            "agent_code": a.agent_code,
+            "agent_code": a.agent_id,
             "product_id": a.product_id,
             "sales_amount": a.sales_amount,
-            "sales_date": a.sales_date,
-            "status": a.status,
+            "sales_date": a.sales_date
         } for a in integrations_all]
 
         return jsonify({

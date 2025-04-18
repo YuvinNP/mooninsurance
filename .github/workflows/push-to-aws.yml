@@ -40,7 +40,7 @@ jobs:
         # be deployed to ECS.
         for service in agent integration sales branch; do
           cd $service
-          IMAGE_TAG="$service-img-v2"
+          IMAGE_TAG="$service-img-v3"
           docker build --no-cache -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           cd ..
