@@ -78,7 +78,7 @@ def lambda_handler(event, context):
                         WHEN SUM(s.sale_amount) >= t.monthly_target  THEN 'Achieved'
                         ELSE 'Not Achieved'
                     END AS target_status
-                FROM mooninsurance_db.sales s
+                FROM mooninsurance_db.integration s
                 JOIN mooninsurance_db.agents a ON s.agent_id = a.agent_id
                 JOIN mooninsurance_db.teams t ON a.team_id = t.team_id
                 GROUP BY t.team_id, t.team_name
@@ -93,7 +93,7 @@ def lambda_handler(event, context):
                         WHEN SUM(s.sale_amount) >= p.product_target_sales THEN 'Achieved'
                         ELSE 'Not Achieved'
                     END AS target_status
-                FROM mooninsurance_db.sales s
+                FROM mooninsurance_db.integration s
                 JOIN mooninsurance_db.products p ON s.product_id = p.product_id
                 GROUP BY p.product_id, p.product_name, p.product_target_sales
                 ORDER BY total_sales DESC;"""
@@ -107,7 +107,7 @@ def lambda_handler(event, context):
                         WHEN SUM(s.sale_amount) >= b.monthly_target THEN 'Achieved'
                         ELSE 'Not Achieved'
                     END AS target_status
-                FROM mooninsurance_db.sales s
+                FROM mooninsurance_db.integration s
                 JOIN mooninsurance_db.agents a ON s.agent_id = a.agent_id
                 JOIN mooninsurance_db.branches b ON a.branch_id = b.branch_id
                 GROUP BY b.branch_id, b.branch_name, b.monthly_target
